@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-
+import PropTypes from 'prop-types';
 const DEFAULT_QUERY = "redux";
 const DEFAULT_HPP = "10";
 const PATH_BASE = "https://hn.algolia.com/api/v1";
@@ -143,5 +143,22 @@ const Button = ({ onClick, className = "", children }) => (
     {children}
   </button>
 );
-
+Button.propTypes={
+  onClick:PropTypes.func.isRequired,
+  className:PropTypes.string,
+  children:PropTypes.node.isRequired
+}
+Table.propTypes={
+  list:PropTypes.arrayOf(
+    PropTypes.shape({
+      objectID:PropTypes.string.isRequired,
+      author:PropTypes.string,
+      url:PropTypes.string,
+      num_comments:PropTypes.number,
+      points:PropTypes.number
+    }
+    )
+  ).isRequired,
+  onDismiss:PropTypes.func.isRequired
+}
 export default App;
